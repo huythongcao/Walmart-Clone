@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "walmark-clone"
+    }
+  },
+  "defaultProject": "walmark-clone",
+  "cli": {
+    "analytics": false
+  }
 }
