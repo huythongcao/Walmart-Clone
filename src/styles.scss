@@ -1,2 +1,16 @@
+/*! `Custom` Bootstrap 5 theme */
+$primary:#07689F;
+$secondary:#C9D6DF;
+$success:#11D3BC;
+$danger:#F67280;
+$info:#A2D5F2;
+$warning:#FF7E67;
+$light:#FAFAFA;
+$dark:#4e4e4e;
+$spacer:1rem;
+$border-width:1px;
+$btn-border-radius:.25rem;
+
+// Add SASS theme customizations here..
 @import '../node_modules/bootstrap/dist/css/bootstrap.css';
 @import '../node_modules/@fortawesome/fontawesome-free/css/all.css';
