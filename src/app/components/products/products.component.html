@@ -18,6 +18,7 @@
         <div
           class="product-color-preview"
           [style.background-color]="item.color"
+          [routerLink]="[item.id]"
         ></div>
         <div class="card-body">
           <h5 class="card-title text-capitalize">{{ item.name }}</h5>
