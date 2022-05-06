@@ -1,1 +1,54 @@
-<p>products works!</p>
+<div class="row py-4">
+  <div class="col">
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <input
+            type="text"
+            #search
+            (keyup)="onKeyUp(search.value)"
+            class="form-control"
+            placeholder="Filter..."
+          />
+        </div>
+      </div>
+    </div>
+    <div class="product-container py-4">
+      <div class="card shadow" *ngFor="let item of filtered">
+        <div
+          class="product-color-preview"
+          [style.background-color]="item.color"
+        ></div>
+        <div class="card-body">
+          <h5 class="card-title text-capitalize">{{ item.name }}</h5>
+          <p class="card-text text-info">
+            <span>Panton value: </span> {{ item.pantone_value }}
+          </p>
+          <p class="card-text text-info">
+            <span> Year: </span> {{ item.year }}
+          </p>
+          <p class="card-text text-warning">
+            <span> Price: </span> {{ item.price }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <nav class="mt-4">
+      <ul class="pagination">
+        <li class="page-item">
+          <span class="page-link" href="#">Previous</span>
+        </li>
+        <li
+          class="page-item"
+          *ngFor="let page of pages"
+          (click)="goToPage(page)"
+          [class.active]="current_page === page"
+        >
+          <span class="page-link" href="#">{{ page }}</span>
+        </li>
+        <li class="page-item"><span class="page-link" href="#">Next</span></li>
+      </ul>
+    </nav>
+  </div>
+</div>

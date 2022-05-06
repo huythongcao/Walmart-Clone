@@ -1,0 +1,19 @@
+.product-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+} 
+
+.card {
+    p {
+        margin-bottom: 10px;
+    }
+}
+
+.product-color-preview {
+    height: 150px;
+}
+
+span.page-link {
+    cursor: pointer;
+}
