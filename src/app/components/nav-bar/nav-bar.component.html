@@ -1,5 +1,5 @@
-<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <div class="container-xl d-flex ">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-xl d-flex">
     <a class="navbar-brand" routerLink="/">
       <img
         src="../../../assets/logo-nav.png"
@@ -8,63 +8,23 @@
         alt=""
       />
     </a>
-
     <button
       class="navbar-toggler"
       type="button"
       data-toggle="collapse"
-      data-target="#navbarNav"
-      aria-controls="navbarNav"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
       aria-expanded="false"
       aria-label="Toggle navigation"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse flex-grow-1" id="navbarNav">
-      <ul class="navbar-nav w-100">
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerlink="/home"
-            >Home <span class="sr-only">(current)</span></a
-          >
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerlink="/products">Products</a>
-        </li>
-        <li class="nav-item ml-auto">
-          <a class="nav-link" routerlink="/login"
-            ><i class="fas fa-sign-in-alt"></i>Login</a
-          >
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav> -->
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <div class="container-xl">
-    <a class="navbar-brand" routerLink="/"
-      ><img
-        src="../../../assets/logo-nav.png"
-        height="30"
-        class="d-inline-block align-top"
-        alt=""
-    /></a>
-
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
+    <div
+      class="collapse navbar-collapse flex-grow-1"
+      id="navbarSupportedContent"
     >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse flex-grow-1" id="navbarNav">
-      <ul class="navbar-nav w-100">
+      <ul class="navbar-nav align-items-center w-100">
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" routerLink="/home"
             >Home <span class="sr-only">(current)</span></a
@@ -73,12 +33,28 @@
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" routerLink="/products">Products</a>
         </li>
-
-        <li class="nav-item ml-auto">
-          <a class="nav-link" routerLink="/login">
-            <i class="fas fa-sign-in-alt"></i>Login
-          </a>
+        <li class="nav-item ml-auto" *ngIf="!auth.isLoggedIn(); else profile">
+          <a class="nav-link" routerLink="/login"
+            ><i class="fas fa-sign-in-alt"></i> Login</a
+          >
         </li>
+        <ng-template #profile>
+          <li class="ml-auto">
+            <div class="dropdown">
+              <span class="dropdown-toggle" (click)="onToggle()"
+                ><img class="rounded-circle" [src]="auth.user.avata" alt=""
+              /></span>
+              <div class="dropdown-menu" [class.show]="show">
+                <a class="dropdown-item" (click)="goToMyProfile()"
+                  >My profile</a
+                >
+                <a class="dropdown-item" (click)="onLogout()">
+                  <i class="fas fa-sign-out-alt"></i> Logout</a
+                >
+              </div>
+            </div>
+          </li>
+        </ng-template>
       </ul>
     </div>
   </div>

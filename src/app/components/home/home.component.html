@@ -1,5 +1,10 @@
 <div class="jumbotron">
-  <h1 class="display-4">Hello, world!</h1>
+  <h1 class="display-4" *ngIf="!auth.isLoggedIn(); else greetingUser">
+    Hello, world!
+  </h1>
+  <ng-template #greetingUser>
+    <h1 class="display-4">Welcome {{ auth.user.name }} back!</h1>
+  </ng-template>
   <p class="lead">
     This is a simple hero unit, a simple jumbotron-style component for calling
     extra attention to featured content or information.

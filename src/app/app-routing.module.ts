@@ -4,34 +4,22 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { ProductsComponent } from './components/products/products.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'products/:id', component: ProductDetailComponent },
+  { path: 'products', component: ProductsComponent },
+  { path: 'login', component: LoginComponent },
   {
-    path: '',
-    redirectTo: '/home',
-    pathMatch: 'full',
+    path: 'my-profile',
+    component: MyProfileComponent,
+    canActivate: [AuthGuard],
   },
-  {
-    path: "home",
-    component: HomeComponent,
-  },
-  {
-    path: 'products/:id',
-    component: ProductDetailComponent,
-  },
-  {
-    path: 'products',
-    component: ProductsComponent,
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
-  },
-  {
-    path: '**',
-    component: NotFoundComponent
-  }
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({

@@ -1,0 +1,18 @@
+.dropdown {
+  .dropdown-toggle::after {
+    color: #fff;
+  }
+  img {
+    height: 44px;
+    width: 44px;
+    object-fit: cover;
+  }
+  .dropdown-menu {
+    right: 0;
+    left: auto;
+
+    .dropdown-item {
+      cursor: default;
+    }
+  }
+}
