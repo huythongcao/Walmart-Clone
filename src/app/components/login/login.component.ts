@@ -8,10 +8,15 @@ import { AuthService } from './../../services/auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  // hard code for dev purpose
   user = {
     email: 'janet.weaver@reqres.in',
     password: 'abc123',
   };
+  // user = {
+  //   email: '',
+  //   password: '',
+  // };
   constructor(private auth: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
@@ -23,4 +28,10 @@ export class LoginComponent implements OnInit {
       }
     });
   }
+
+  log(value) {
+    console.log(value);
+  }
+
+
 }

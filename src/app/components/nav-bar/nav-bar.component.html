@@ -48,6 +48,9 @@
                 <a class="dropdown-item" (click)="goToMyProfile()"
                   >My profile</a
                 >
+                <a class="dropdown-item" *ngIf="auth.isAdmin()" (click)="goToAdminPage()"
+                  >Go to admin page</a
+                >
                 <a class="dropdown-item" (click)="onLogout()">
                   <i class="fas fa-sign-out-alt"></i> Logout</a
                 >

@@ -14,6 +14,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { FormsModule } from '@angular/forms';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
+import { NoAccessComponent } from './components/no-access/no-access.component';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
     NotFoundComponent,
     ProductDetailComponent,
     MyProfileComponent,
+    NoAccessComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [
@@ -34,6 +37,7 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
       useClass: AuthInterceptor,
       multi: true,
     },
+    AuthService
   ],
   bootstrap: [AppComponent],
 })

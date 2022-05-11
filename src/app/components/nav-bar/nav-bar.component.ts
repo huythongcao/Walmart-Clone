@@ -25,4 +25,6 @@ export class NavBarComponent implements OnInit {
     this.router.navigateByUrl('/my-profile');
     this.show = false;
   }
+
+  goToAdminPage() {}
 }
