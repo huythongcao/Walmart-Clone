@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { CustomValidators } from 'src/app/custom-form-validator/custom-validators';
 
 @Component({
   selector: 'app-signup',
@@ -12,6 +13,8 @@ export class SignupComponent implements OnInit {
       Validators.required,
       Validators.minLength(2),
       Validators.maxLength(20),
+      // Để angular tự call function này 
+      CustomValidators.specialCharacters
     ]),
     last_name: new FormControl('', [
       Validators.required,

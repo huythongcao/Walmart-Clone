@@ -31,6 +31,11 @@
         {{ first_name.errors.maxlength.requiredLength }}
         characters</ng-container
       >
+      <ng-container *ngIf="first_name.errors.specialCharacters"
+        >First name cannot contain ({{
+          first_name.errors.specialCharacters.character
+        }}) which is special character(s)</ng-container
+      >
     </div>
   </div>
 
@@ -99,15 +104,15 @@
   </div>
 
   <!-- Shipping Address inputs -->
-  <div class="form-group border rounded p-3" FormArrayName="shippingAddress">
+  <div class="form-group border rounded p-3" formArrayName="shippingAddress">
     <h6>Shipping Address:</h6>
 
-    <div *ngFor="let item of shippingAddress.controls; let i = index">
+    <div *ngFor="let item of shippingAddress['controls']; let i = index">
       <div class="form-group border rounded p-3" [formGroupName]="i">
         <p class="font-weight-bold">Address {{ i + 1 }}</p>
         <div class="row align-items-center">
           <div class="col-10">
-            <!-- Address name input -->    
+            <!-- Address name input -->
             <div class="form-group">
               <label> Name</label>
               <input
