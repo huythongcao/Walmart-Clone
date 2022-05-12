@@ -33,11 +33,18 @@
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" routerLink="/products">Products</a>
         </li>
-        <li class="nav-item ml-auto" *ngIf="!auth.isLoggedIn(); else profile">
+        <li
+          class="nav-item ml-auto d-flex align-items-center"
+          *ngIf="!auth.isLoggedIn()"
+        >
           <a class="nav-link" routerLink="/login"
             ><i class="fas fa-sign-in-alt"></i> Login</a
           >
+          <a class="nav-link" routerLink="/signup"
+            ><i class="fas fa-user-plus"></i> Signup</a
+          >
         </li>
+
         <ng-template #profile>
           <li class="ml-auto">
             <div class="dropdown">
@@ -48,7 +55,10 @@
                 <a class="dropdown-item" (click)="goToMyProfile()"
                   >My profile</a
                 >
-                <a class="dropdown-item" *ngIf="auth.isAdmin()" (click)="goToAdminPage()"
+                <a
+                  class="dropdown-item"
+                  *ngIf="auth.isAdmin()"
+                  (click)="goToAdminPage()"
                   >Go to admin page</a
                 >
                 <a class="dropdown-item" (click)="onLogout()">

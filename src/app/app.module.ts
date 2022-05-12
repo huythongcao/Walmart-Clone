@@ -12,10 +12,11 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { NoAccessComponent } from './components/no-access/no-access.component';
 import { AuthService } from './services/auth.service';
+import { SignupComponent } from './components/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -29,8 +30,9 @@ import { AuthService } from './services/auth.service';
     ProductDetailComponent,
     MyProfileComponent,
     NoAccessComponent,
+    SignupComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
