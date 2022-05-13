@@ -34,8 +34,34 @@
           <a class="nav-link" routerLink="/products">Products</a>
         </li>
         <li
+          class="nav-item flex-grow-1 d-flex align-items-center justify-content-center"
+        >
+          <div class="dropdown w-50 search-dropdown">
+            <input
+              class="form-control form-control-sm mr-sm-2 w-100"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              [formControl]="searchControl"
+            />
+            <div
+              class="dropdown-menu w-100"
+              [class.show]="showDropDown"
+            >
+              <a
+                class="dropdown-item"
+                *ngFor="let item of searchResults"
+                [href]="item.url"
+                target="_blank"
+                (click)="showDropDown = !showDropDown"
+                >{{ item.title }}</a
+              >
+            </div>
+          </div>
+        </li>
+        <li
           class="nav-item ml-auto d-flex align-items-center"
-          *ngIf="!auth.isLoggedIn()"
+          *ngIf="!auth.isLoggedIn(); else profile"
         >
           <a class="nav-link" routerLink="/login"
             ><i class="fas fa-sign-in-alt"></i> Login</a
@@ -47,9 +73,9 @@
 
         <ng-template #profile>
           <li class="ml-auto">
-            <div class="dropdown">
+            <div class="dropdown user-dropdown">
               <span class="dropdown-toggle" (click)="onToggle()"
-                ><img class="rounded-circle" [src]="auth.user.avata" alt=""
+                ><img class="rounded-circle" [src]="auth.user.avatar" alt=""
               /></span>
               <div class="dropdown-menu" [class.show]="show">
                 <a class="dropdown-item" (click)="goToMyProfile()"

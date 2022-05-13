@@ -28,7 +28,7 @@ export class AuthService {
     return this.http.post(`${this.baseUrl}/api/login`, user).pipe(
       map(
         (res) =>
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkphbmV0IiwiZW1haWwiOiJqYW5ldC53ZWF2ZXJAcmVxcmVzLmluIiwiYXZhdGFyIjoiaHR0cHM6Ly9yZXFyZXMuaW4vaW1nL2ZhY2VzLzItaW1hZ2UuanBnIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTUxNjIzOTAyMiwiaWQiOjJ9.DC5VYW_U6MsdU3CW3BDUA6qCMaeDHE60pEpXMfwhUwc'
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkphbmV0IiwiZW1haWwiOiJqYW5ldC53ZWF2ZXJAcmVxcmVzLmluIiwiYXZhdGFyIjoiaHR0cHM6Ly9yZXFyZXMuaW4vaW1nL2ZhY2VzLzItaW1hZ2UuanBnIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNTE2MjM5MDIyLCJpZCI6Mn0.eT-ZlZUt3EZhocb1rWZIjf2BiNU65cKZdWc5MFzON5o'
       ),
       tap((token: string) => {
         let decoded = jwtDecode(token);

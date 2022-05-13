@@ -1,6 +1,16 @@
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './../../services/auth.service';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  map,
+  switchMap,
+  tap,
+} from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,10 +18,47 @@ import { AuthService } from './../../services/auth.service';
   styleUrls: ['./nav-bar.component.scss'],
 })
 export class NavBarComponent implements OnInit {
+  searchControl = new FormControl('');
+  searchResults = [];
+  showDropDown = false
   show = false;
-  constructor(public auth: AuthService, private router: Router) {}
 
-  ngOnInit(): void {}
+  constructor(
+    public auth: AuthService,
+    private router: Router,
+    private http: HttpClient
+  ) {}
+
+  ngOnInit(): void {
+    this.searchControl.valueChanges
+      .pipe(
+        map((v: string) => v.trim()),
+        tap((v: string) => {
+          if (v === '') {
+            this.showDropDown = false;
+          }
+        }),
+        filter((v: string) => v !== ''),
+        debounceTime(300),
+        distinctUntilChanged(),
+        switchMap((v) =>
+          this.http.get(
+            `https://en.wikipedia.org/w/api.php?origin=*&action=opensearch&limit=10&format=json&search=` +
+              v
+          )
+        ),
+        map((res: any) =>
+          res[1].map((item, index) => {
+            return { title: item, url: res[3][index] };
+          })
+        )
+      )
+      .subscribe((data) => {
+        // console.log(value);
+        this.searchResults = data
+        this.showDropDown = true
+      });
+  }
 
   onToggle() {
     this.show = !this.show;
@@ -26,5 +73,8 @@ export class NavBarComponent implements OnInit {
     this.show = false;
   }
 
-  goToAdminPage() {}
+  goToAdminPage() {
+    this.show = false;
+    this.router.navigateByUrl('/admin');
+  }
 }
