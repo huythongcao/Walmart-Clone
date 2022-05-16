@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { CartService } from 'src/app/services/cart.service';
 
 import { Product, ProductService } from './../../services/product.service';
 @Component({
@@ -14,7 +15,7 @@ export class ProductsComponent implements OnInit {
   pages = [];
   currentPage = 1;
   @ViewChild('search') searchInput: ElementRef;
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, public cartService: CartService) {}
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe((res) => {

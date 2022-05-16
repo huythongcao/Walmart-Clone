@@ -30,6 +30,31 @@
           <p class="card-text text-warning">
             <span>Price: </span> {{ item.price | currency: "USD" }}
           </p>
+          <button
+            class="btn btn-primary w-100"
+            (click)="cartService.addItem(item)"
+            *ngIf="cartService.getItemQuantity(item) === 0; else updateQuantity"
+          >
+            <i class="fas fa-cart-plus"></i> Add to cart
+          </button>
+
+          <ng-template #updateQuantity>
+            <div class="d-flex justify-content-between align-items-center">
+              <button
+                class="btn btn-danger"
+                (click)="cartService.removeItem(item)"
+              >
+                <i class="fas fa-minus"></i>
+              </button>
+              <span>{{ cartService.getItemQuantity(item) }}</span>
+              <button
+                class="btn btn-primary"
+                (click)="cartService.addItem(item)"
+              >
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          </ng-template>
         </div>
       </div>
     </div>

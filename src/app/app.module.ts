@@ -17,6 +17,7 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
 import { NoAccessComponent } from './components/no-access/no-access.component';
 import { AuthService } from './services/auth.service';
 import { SignupComponent } from './components/signup/signup.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { SignupComponent } from './components/signup/signup.component';
     MyProfileComponent,
     NoAccessComponent,
     SignupComponent,
+    CartComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule],
   providers: [

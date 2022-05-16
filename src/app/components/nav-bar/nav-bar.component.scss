@@ -18,13 +18,10 @@
 //   }
 // }
 
-.user-avatar {
+img {
   width: 32px;
-
   height: 32px;
-
   object-fit: cover;
-
   border-radius: 50%;
 }
 
@@ -44,4 +41,14 @@
     right: auto;
     min-width: 100%;
   }
+}
+
+.cart-quantity {
+  position: relative;
+  top: -8px;
+  margin-left: 3px;
+}
+
+.cart-price {
+  font-size: 12px;
 }

@@ -11,6 +11,7 @@ import {
   tap,
 } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -26,12 +27,15 @@ export class NavBarComponent implements OnInit {
   constructor(
     public auth: AuthService,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    public cartService: CartService
   ) {}
 
   ngOnInit(): void {
     this.searchControl.valueChanges
       .pipe(
+        debounceTime(100),
+        distinctUntilChanged(),
         map((v: string) => v.trim()),
         tap((v: string) => {
           if (v === '') {
@@ -39,8 +43,6 @@ export class NavBarComponent implements OnInit {
           }
         }),
         filter((v: string) => v !== ''),
-        debounceTime(300),
-        distinctUntilChanged(),
         switchMap((v) =>
           this.http.get(
             `https://en.wikipedia.org/w/api.php?origin=*&action=opensearch&limit=10&format=json&search=` +

@@ -44,10 +44,7 @@
               aria-label="Search"
               [formControl]="searchControl"
             />
-            <div
-              class="dropdown-menu w-100"
-              [class.show]="showDropDown"
-            >
+            <div class="dropdown-menu w-100" [class.show]="showDropDown">
               <a
                 class="dropdown-item"
                 *ngFor="let item of searchResults"
@@ -59,6 +56,19 @@
             </div>
           </div>
         </li>
+
+        <li class="nav-item mr-3">
+          <a class="nav-link cart text-center" routerLink="/cart">
+            <i class="fas fa-shopping-cart text-white"></i>
+            <span class="cart-quantity text-warning font-weight-bold">{{
+              cartService.getCartQuantity()
+            }}</span>
+            <div class="cart-price text-white">
+              {{ cartService.getCartTotalPrice() | currency: "USD" }}
+            </div>
+          </a>
+        </li>
+
         <li
           class="nav-item ml-auto d-flex align-items-center"
           *ngIf="!auth.isLoggedIn(); else profile"
@@ -75,7 +85,8 @@
           <li class="ml-auto">
             <div class="dropdown user-dropdown">
               <span class="dropdown-toggle" (click)="onToggle()"
-                ><img class="rounded-circle" [src]="auth.user.avatar" alt=""
+                ><img class="rounded-circle" 
+                src]="auth.user.avatar" alt=""
               /></span>
               <div class="dropdown-menu" [class.show]="show">
                 <a class="dropdown-item" (click)="goToMyProfile()"

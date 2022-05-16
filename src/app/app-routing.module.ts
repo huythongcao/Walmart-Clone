@@ -11,6 +11,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
 import { NoAccessComponent } from './components/no-access/no-access.component';
 import { CanComponentDeactivateGuard } from './guards/can-component-deactivate.guard';
+import { CartComponent } from './components/cart/cart.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -19,10 +20,11 @@ const routes: Routes = [
   { path: 'products', component: ProductsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'cart', component: CartComponent },
   {
     path: 'my-profile',
     component: MyProfileComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard],   // không cho truy cập vào route nhưng vẫn tải xuống source code 
     canDeactivate: [CanComponentDeactivateGuard]
   },
   {
@@ -30,7 +32,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/admin/admin.module').then((m) => m.AdminModule),
       // canActivate: [AuthGuard, AdminGuard],
-      canLoad: [AdminGuard],
+      canLoad: [AdminGuard],    // không cho truy cập vào route nhưng không tải xuống source code 
   },
   { path: 'no-access', component: NoAccessComponent },
   { path: '**', component: NotFoundComponent },
