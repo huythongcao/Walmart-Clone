@@ -14,3 +14,5 @@ $btn-border-radius:.25rem;
 // Add SASS theme customizations here..
 @import '../node_modules/bootstrap/dist/css/bootstrap.css';
 @import '../node_modules/@fortawesome/fontawesome-free/css/all.css';
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

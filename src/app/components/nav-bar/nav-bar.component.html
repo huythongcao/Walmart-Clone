@@ -86,7 +86,7 @@
             <div class="dropdown user-dropdown">
               <span class="dropdown-toggle" (click)="onToggle()"
                 ><img class="rounded-circle" 
-                src]="auth.user.avatar" alt=""
+                [src]="auth.user.avatar" alt=""
               /></span>
               <div class="dropdown-menu" [class.show]="show">
                 <a class="dropdown-item" (click)="goToMyProfile()"
