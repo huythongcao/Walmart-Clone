@@ -18,6 +18,7 @@ export class ProductsComponent implements OnInit {
   constructor(private productService: ProductService, public cartService: CartService) {}
 
   ngOnInit(): void {
+    // Nếu không có param truyền vào thì getProducts() mặc định lấy default param 
     this.productService.getProducts().subscribe((res) => {
       this.filtered = this.products = res.data;
       this.total = res.total;
@@ -41,10 +42,11 @@ export class ProductsComponent implements OnInit {
     this.currentPage = page;
   }
 
-  onClickPrevious() {
-    this.currentPage = this.currentPage - 1;
-  }
-  onClickNext() {
-    this.currentPage = this.currentPage + 1;
-  }
+  // onClickPrevious() {
+  //   this.currentPage = this.currentPage - 1;
+  // }
+
+  // onClickNext() {
+  //   this.currentPage = this.currentPage + 1;
+  // }
 }
